@@ -10,4 +10,16 @@
 
 ## Algorithmie
 ### [Exercices](./Algo/index.js)
+### [Le Juste Prix](./Algo/Juste_prix)
 ### [TP Banque](./Algo/TP%20Banque)
+
+## SQL
+### [Exercices](./SQL)
+
+## Java (JDBC - JPA)
+### [Cours - Java](./Java/Cours)
+### [Exercices - Java](./Java/Exercices)
+### [TP Pokemon (à terminer)](./JPA/TP%20Pokemon)
+
+## Spring
+### [Exercices pratiques](./Java/Spring)
