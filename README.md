@@ -12,7 +12,7 @@
 #### [Exercice 5](./Web%20Fundamentals/bdd.drawio.png) :pencil2:
 > Bases de données 
 #### [Exercice 6](./Web%20Fundamentals/exercice_6.md) :pencil2:
-> Métiers du web :pencil2:
+> Métiers du web
 
 
 ## Algorithmie
