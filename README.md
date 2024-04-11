@@ -26,3 +26,6 @@
 
 ## Typescript
 - #### Bases [:sparkler:](./Typescript)
+
+## Angular
+- #### Cours [:bookmark_tabs:](./Angular/app)
