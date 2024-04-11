@@ -35,3 +35,18 @@ header {
       }
    }
 }
+
+.odd, .even {
+   padding: 15px;
+   color: #fff;
+   font-size: 2rem;
+   font-weight: 600;
+}
+
+.odd {
+   background: coral;
+}
+
+.even {
+   background: lightpink;
+}

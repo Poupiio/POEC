@@ -1,31 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 
-// type Timeout = ReturnType<setInterval>;
+type Timeout = ReturnType<typeof setInterval>;
 
 @Component({
   selector: 'app-home',
   template: `
-    <p>
+    <p [class]="counter % 2 === 0 ? 'even' : 'odd'">
       home works!
       {{ counter }}
     </p>
   `,
-  styleUrls: [ ]
+  styleUrls: [ "../app.component.scss" ]
 })
 export class HomeComponent implements OnInit {
 
-  counter !: number;
-  id: number | undefined;
+  counter !: number;  // !: = jamais null ou undefined
+  id ?: Timeout;      // ?: = peut être null ou undefined
 
   constructor() { }
 
   ngOnInit(): void {
     this.counter = 0;
   
-    this.id = Number(setInterval(() => {
+    this.id = setInterval(() => {
       this.counter++;
       console.log("Expérience en cours");
-    }, 1000));
+    }, 1000);
   }
 
   ngOnDestroy(): void {
