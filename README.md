@@ -1,28 +1,35 @@
 # ib cegos - POEC Java :computer: - Février 2024, Avril 2024
 
 ## Fondamentaux du web
-### [Exercice 1](./Web%20Fundamentals/schéma_internet.pdf) - Schématisation d'Internet et ses services :pencil2:
-### [Exercice 2](./Web%20Fundamentals/protocoles_ports.png) - Protocoles et ports par défaut :pencil2:
-### [Exercice 3](./Web%20Fundamentals/codes_reponses.drawio.png) - Codes de réponse HTTP :pencil2:
-### [Exercice 4](./Web%20Fundamentals/exercice4.md) - Utiliser la commande "nslookup" :pencil2:
-### [Exercice 5](./Web%20Fundamentals/bdd.drawio.png) - Bases de données :pencil2:
-### [Exercice 6](./Web%20Fundamentals/exercice_6.md) - Métiers du web :pencil2:
+#### [Exercice 1](./Web%20Fundamentals/schéma_internet.pdf) :pencil2:
+> Schématisation d'Internet et ses services 
+#### [Exercice 2](./Web%20Fundamentals/protocoles_ports.png) :pencil2:
+> Protocoles et ports par défaut
+#### [Exercice 3](./Web%20Fundamentals/codes_reponses.drawio.png) :pencil2:
+> Codes de réponse HTTP 
+#### [Exercice 4](./Web%20Fundamentals/exercice4.md) :pencil2:
+> Utiliser la commande "nslookup" 
+#### [Exercice 5](./Web%20Fundamentals/bdd.drawio.png) :pencil2:
+> Bases de données 
+#### [Exercice 6](./Web%20Fundamentals/exercice_6.md) :pencil2:
+> Métiers du web :pencil2:
+
 
 ## Algorithmie
-### [Exercices](./Algo/index.js)
-### [Le Juste Prix](./Algo/Juste_prix)
-### [TP Banque](./Algo/TP%20Banque)
+#### [Exercices](./Algo/index.js) :pencil2:
+#### [Le Juste Prix](./Algo/Juste_prix) :sparkler:
+#### [TP Banque](./Algo/TP%20Banque) :sparkler:
 
 ## SQL
-### [Exercices](./SQL)
+#### [Exercices](./SQL) :pencil2:
 
 ## Java (JDBC - JPA)
-### [Cours - Java](./Java/Cours)
-### [Exercices - Java](./Java/Exercices)
-### [TP Pokemon (à terminer)](./JPA/TP%20Pokemon)
+#### [Cours - Java](./Java/Cours) :bookmark_tabs:
+#### [Exercices - Java](./Java/Exercices) :pencil2:
+#### [TP Pokemon (à terminer)](./JPA/TP%20Pokemon) :sparkler:
 
 ## Spring
-### [Exercices pratiques](./Spring)
+#### [Exercices pratiques](./Spring) :pencil2:
 
 ## Typescript
-### [Bases](./Typescript)
+#### [Bases](./Typescript) :sparkler:
