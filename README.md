@@ -1,35 +1,28 @@
 # ib cegos - POEC Java :computer: - Février 2024, Avril 2024
 
 ## Fondamentaux du web
-#### [Exercice 1](./Web%20Fundamentals/schéma_internet.pdf) :pencil2:
-> Schématisation d'Internet et ses services 
-#### [Exercice 2](./Web%20Fundamentals/protocoles_ports.png) :pencil2:
-> Protocoles et ports par défaut
-#### [Exercice 3](./Web%20Fundamentals/codes_reponses.drawio.png) :pencil2:
-> Codes de réponse HTTP 
-#### [Exercice 4](./Web%20Fundamentals/exercice4.md) :pencil2:
-> Utiliser la commande "nslookup" 
-#### [Exercice 5](./Web%20Fundamentals/bdd.drawio.png) :pencil2:
-> Bases de données 
-#### [Exercice 6](./Web%20Fundamentals/exercice_6.md) :pencil2:
-> Métiers du web
-
+- #### Schématisation d'Internet et ses services [:pencil2:](./Web%20Fundamentals/schéma_internet.pdf)
+- #### Protocoles et ports par défaut [:pencil2:](./Web%20Fundamentals/protocoles_ports.png)
+- #### Codes de réponse HTTP [:pencil2:](./Web%20Fundamentals/codes_reponses.drawio.png)
+- #### Utiliser la commande "nslookup" [:pencil2:](./Web%20Fundamentals/exercice4.md)
+- #### Bases de données [:pencil2:](./Web%20Fundamentals/bdd.drawio.png)
+- #### Métiers du web [:pencil2:](./Web%20Fundamentals/exercice_6.md)
 
 ## Algorithmie
-#### [Exercices](./Algo/index.js) :pencil2:
-#### [Le Juste Prix](./Algo/Juste_prix) :sparkler:
-#### [TP Banque](./Algo/TP%20Banque) :sparkler:
+- #### Exercices [:pencil2:](./Algo/index.js)
+- #### TP Le Juste Prix [:sparkler:](./Algo/Juste_prix)
+- #### TP Banqued [:sparkler:](./Algo/TP%20Banque)
 
 ## SQL
-#### [Exercices](./SQL) :pencil2:
+- #### Exercices [:pencil2:](./SQL)
 
 ## Java (JDBC - JPA)
-#### [Cours - Java](./Java/Cours) :bookmark_tabs:
-#### [Exercices - Java](./Java/Exercices) :pencil2:
-#### [TP Pokemon (à terminer)](./JPA/TP%20Pokemon) :sparkler:
+- #### Java - Cours [:bookmark_tabs:](./Java/Cours) 
+- #### Java - Exercices [:pencil2:](./Java/Exercices)
+- #### TP Pokemon (à terminer) [:sparkler:](./JPA/TP%20Pokemon)
 
 ## Spring
-#### [Exercices pratiques](./Spring) :pencil2:
+- #### Exercices pratiques [:pencil2:](./Spring)
 
 ## Typescript
-#### [Bases](./Typescript) :sparkler:
+- #### Bases [:sparkler:](./Typescript)
