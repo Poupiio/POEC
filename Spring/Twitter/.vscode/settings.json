@@ -1,0 +1,34 @@
+{
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"frontangu/.vscode": true,
+		"frontangu/node_modules": true,
+		"frontangu/.editorconfig": true,
+		"frontangu/.gitignore": true,
+		"frontangu/angular.json": true,
+		"frontangu/package-lock.json": true,
+		"frontangu/package.json": true,
+		"frontangu/README.md": true,
+		"frontangu/tsconfig.app.json": true,
+		"frontangu/tsconfig.json": true,
+		"frontangu/tsconfig.spec.json": true
+	},
+	"hide-files.files": [
+		"frontangu/.vscode",
+		"frontangu/node_modules",
+		"frontangu/.editorconfig",
+		"frontangu/.gitignore",
+		"frontangu/angular.json",
+		"frontangu/package-lock.json",
+		"frontangu/package.json",
+		"frontangu/README.md",
+		"frontangu/tsconfig.app.json",
+		"frontangu/tsconfig.json",
+		"frontangu/tsconfig.spec.json"
+	]
+}

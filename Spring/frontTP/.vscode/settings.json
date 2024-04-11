@@ -1,0 +1,40 @@
+{
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"front1/.editorconfig": true,
+		"front1/.gitignore": true,
+		"front1/angular.json": true,
+		"front1/item.java": true,
+		"front1/package-lock.json": true,
+		"front1/package.json": true,
+		"front1/tsconfig.app.json": true,
+		"front1/tsconfig.json": true,
+		"front1/tsconfig.spec.json": true,
+		"front1/node_modules": true,
+		"front1/.vscode": true,
+		"front1/.angular/cache/17.3.0": true,
+		"front1/.angular/cache": true,
+		"front1/.angular": true
+	},
+	"hide-files.files": [
+		"front1/.editorconfig",
+		"front1/.gitignore",
+		"front1/angular.json",
+		"front1/item.java",
+		"front1/package-lock.json",
+		"front1/package.json",
+		"front1/tsconfig.app.json",
+		"front1/tsconfig.json",
+		"front1/tsconfig.spec.json",
+		"front1/node_modules",
+		"front1/.vscode",
+		"front1/.angular/cache/17.3.0",
+		"front1/.angular/cache",
+		"front1/.angular"
+	]
+}

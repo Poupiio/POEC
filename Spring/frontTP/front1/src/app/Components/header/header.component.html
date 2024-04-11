@@ -1,0 +1,16 @@
+<nav class="container">
+	<a [routerLink]="['/home']">MaMaZon</a>
+	<!-- Dropdown list -->
+	<div class="dropdown" *ngIf="!this.user.connected">
+		<button class="dropbtn">Connection/Inscription</button>
+
+		<div class="dropdown-content" >
+			<a [routerLink]="['/connection']" >Connection</a>
+			<a [routerLink]="['/inscription']" >Inscription</a>
+		</div>
+	</div>
+	<p>
+		<a [routerLink]="['/cart']" *ngIf="this.user.connected">Panier</a>
+		<a [routerLink]="['/profil']" *ngIf="this.user.connected">Profil</a>
+	</p>
+</nav>

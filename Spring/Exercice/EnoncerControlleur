@@ -1,0 +1,82 @@
+TP 1: Création d'un Contrôleur REST Simple
+
+    Objectif: Créer un contrôleur REST simple pour gérer des requêtes HTTP.
+    Tâches:
+        Développer un contrôleur REST avec une route GET retournant un message simple.
+        Tester la route avec un client HTTP (Postman ou curl).
+
+
+TP 2: Gestion des Tâches
+
+	Objectif: Créer un contrôleur REST pour gérer des tâches avec des opérations CRUD.
+	Tâches:
+		Créer un service pour gérer les tâches.
+		Il doit être possible de créer, lire, mettre à jour et supprimer des tâches.
+		Vous n'avez pas besoin de persister les tâches dans une base de données pour le moment.
+		vous viendrez juste stocker les tâches dans une liste en mémoire.
+		Les méthodes du contrôleur devront ètre :
+			- GET /tasks : retourne la liste des tâches
+			 // Facultatif - GET /tasks/{id} : retourne une tâche par son id
+			- POST /tasks : crée une nouvelle tâche
+			 // Facultatif - PUT /tasks/{id} : met à jour une tâche
+			// facultatif - DELETE /tasks/{id} : supprime une tâche
+		Tester les différentes routes avec un client HTTP (Postman ou curl).
+
+TP 3: Gestion des Utilisateurs
+
+    Objectif: Utiliser Spring Data JPA pour interagir avec une base de données et exposer des données via des endpoints REST.
+    Tâches:
+        Configurer une base de données H2 en mémoire.
+        Créer une entité User et un répertoire pour gérer les utilisateurs.
+		Les méthodes du contrôleur devront ètre :
+			- GET /users : retourne la liste des utilisateurs
+			- GET /users/{id} : retourne un utilisateur par son id
+			- POST /users : crée un nouvel utilisateur
+			- PUT /users/{id} : met à jour un utilisateur
+			- DELETE /users/{id} : supprime un utilisateur
+        Développer des contrôleurs REST pour créer, lire, mettre à jour et supprimer des utilisateurs.
+
+
+--------------------------------------------------
+
+Initialisation du Projet :
+
+    Utilisez Spring Initializr pour créer un nouveau projet Spring Boot.
+    Choisissez Maven comme système de build, Java comme langage, et la dernière version de Spring Boot disponible.
+    Ajoutez les dépendances suivantes : Spring Web, Spring Data JPA, mysql Database, Spring Security.
+    Générez le projet et importez-le dans votre IDE.
+
+Création du Modèle de Données :
+
+    Créez une entité Produit avec les attributs suivants : id (Long), nom (String), prix (double), et quantité (int).
+    Utilisez Spring Data JPA pour mapper cette entité à une table dans la base de données H2.
+
+Création du Repository :
+
+    Créez une interface ProduitRepository qui étend JpaRepository pour gérer les opérations CRUD sur les produits.
+
+Création du Controller :
+
+    Créez un controller ProduitController avec des endpoints pour ajouter, récupérer, mettre à jour, et supprimer des produits.
+    Utilisez les annotations @RestController, @RequestMapping, @GetMapping, @PostMapping, @PutMapping, et @DeleteMapping.
+
+
+
+--------------------------------------------------
+
+
+7. Gestion des Utilisateurs :
+
+    Modèle Utilisateur : Créez une entité Utilisateur avec les attributs suivants : id (Long), nom (String), email (String), mot de passe (String), et rôle (String). Le rôle déterminera si l'utilisateur est un client ou un administrateur.
+	
+    Repository Utilisateur : Créez une interface UtilisateurRepository qui étend JpaRepository pour gérer les opérations CRUD sur les utilisateurs.
+
+    Controller Utilisateur : Créez un controller UtilisateurController avec des endpoints pour l'inscription et la connexion des utilisateurs. Utilisez l'encodage des mots de passe pour sécuriser les mots de passe des utilisateurs.
+
+8. Fonctionnalité d'Achat :
+
+    Modèle Commande : Créez une entité Commande qui contient les informations sur les achats des utilisateurs, incluant un id (Long), une référence à l'utilisateur (relation), un ensemble de produits (relation), et le total de la commande (double).
+
+    Repository Commande : Créez une interface CommandeRepository qui étend JpaRepository pour gérer les opérations CRUD sur les commandes.
+
+    Controller Commande : Créez un controller CommandeController avec un endpoint pour créer une commande. Cet endpoint devrait accepter une liste de produits et un identifiant d'utilisateur, calculer le total de la commande, réduire les stocks des produits achetés, et sauvegarder la commande.
