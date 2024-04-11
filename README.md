@@ -7,3 +7,7 @@
 ### [Exercice 4](./Web%20Fundamentals/exercice4.md) - Utiliser la commande "nslookup" :pencil2:
 ### [Exercice 5](./Web%20Fundamentals/bdd.drawio.png) - Bases de données :pencil2:
 ### [Exercice 6](./Web%20Fundamentals/exercice_6.md) - Métiers du web :pencil2:
+
+## Algorithmie
+### [Exercices](./Algo/index.js)
+### [TP Banque](./Algo/TP%20Banque)
