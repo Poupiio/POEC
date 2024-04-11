@@ -22,4 +22,4 @@
 ### [TP Pokemon (à terminer)](./JPA/TP%20Pokemon)
 
 ## Spring
-### [Exercices pratiques](./Java/Spring)
+### [Exercices pratiques](./Spring)
