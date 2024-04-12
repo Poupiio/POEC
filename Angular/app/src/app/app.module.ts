@@ -7,6 +7,11 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ButtonComponent } from './lib/button/button.component';
 import { ModalComponent } from './lib/modal/modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragdropComponent } from './dragdrop/dragdrop.component';
+import { FormsModule } from '@angular/forms';
+import { SortableModule } from 'ngx-bootstrap/sortable';
+
 
 @NgModule({
   declarations: [
@@ -14,11 +19,15 @@ import { ModalComponent } from './lib/modal/modal.component';
     HomeComponent,
     AboutComponent,
     ButtonComponent,
-    ModalComponent
+    ModalComponent,
+    DragdropComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    SortableModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

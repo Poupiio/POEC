@@ -1,0 +1,33 @@
+h1 {
+   text-align: center;
+   margin-bottom: 30px;
+   color: coral;
+}
+
+.wrapper {
+   width: 60%;
+   margin: 0 auto;
+
+   .status {
+      border: solid 2px coral;
+      margin: 0 auto;
+      border-radius: 8px;
+
+      h2 {
+         color: #8E4EC6;
+      }
+
+      // ::ng-deep pour styliser les composants enfants
+      ::ng-deep {
+         .sortable-item {
+            cursor: pointer;
+            border: solid 2px lightpink;
+            padding: 5px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 1.1rem;
+      }
+
+      }
+   }
+}
