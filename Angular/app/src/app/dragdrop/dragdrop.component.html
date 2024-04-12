@@ -1,39 +1,22 @@
 <h1>On fait quoi ?</h1>
 <div class="row wrapper">
-   <div class="col-xs-6 col-6 col-md-5 col-lg-3 status">
+  <div class="col-xs-6 col-6 col-md-5 col-lg-3 status">
     <h2>À faire</h2>
-     <bs-sortable
-       [(ngModel)]="todo"
-       fieldName="name"
-       itemClass="sortable-item"
-       itemActiveClass="sortable-item-active"
-       placeholderItem="Drag here"
-       placeholderClass="placeholderStyle text-center"
-       wrapperClass="sortable-wrapper"
-     ></bs-sortable>
-   </div>
-   <div class="col-xs-6 col-6 col-md-5 col-lg-3 status">
+    <bs-sortable [(ngModel)]="todo" fieldName="name" itemClass="sortable-item" itemActiveClass="sortable-item-active"
+      placeholderItem="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+      placeholderClass="placeholderStyle text-center"
+      wrapperClass="sortable-wrapper"></bs-sortable>
+  </div>
+  <div class="col-xs-6 col-6 col-md-5 col-lg-3 status">
     <h2>En cours</h2>
-     <bs-sortable
-       [(ngModel)]="ongoing"
-       fieldName="name"
-       itemClass="sortable-item"
-       itemActiveClass="sortable-item-active"
-       placeholderItem="Drag here"
-       placeholderClass="placeholderStyle text-center"
-       wrapperClass="sortable-wrapper"
-     ></bs-sortable>
-   </div>
-   <div class="col-xs-6 col-6 col-md-5 col-lg-3 status">
+    <bs-sortable [(ngModel)]="ongoing" fieldName="name" itemClass="sortable-item" itemActiveClass="sortable-item-active"
+      placeholderItem="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" placeholderClass="placeholderStyle text-center"
+      wrapperClass="sortable-wrapper"></bs-sortable>
+  </div>
+  <div class="col-xs-6 col-6 col-md-5 col-lg-3 status">
     <h2>Terminé</h2>
-     <bs-sortable
-       [(ngModel)]="done"
-       fieldName="name"
-       itemClass="sortable-item"
-       itemActiveClass="sortable-item-active"
-       placeholderItem="Drag here"
-       placeholderClass="placeholderStyle text-center"
-       wrapperClass="sortable-wrapper"
-     ></bs-sortable>
-   </div>
- </div>
+    <bs-sortable [(ngModel)]="done" fieldName="name" itemClass="sortable-item" itemActiveClass="sortable-item-active"
+      placeholderItem="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" placeholderClass="placeholderStyle text-center"
+      wrapperClass="sortable-wrapper"></bs-sortable>
+  </div>
+</div>

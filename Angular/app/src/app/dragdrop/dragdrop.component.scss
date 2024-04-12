@@ -16,6 +16,10 @@ h1 {
       h2 {
          color: #8E4EC6;
          margin-bottom: 20px;
+         text-transform: uppercase;
+         padding-top: 10px;
+         font-size: 1.6rem;
+         font-weight: 700;
       }
 
       // ::ng-deep pour styliser les composants enfants
