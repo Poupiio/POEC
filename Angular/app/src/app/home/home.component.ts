@@ -5,17 +5,20 @@ type Timeout = ReturnType<typeof setInterval>;
 @Component({
   selector: 'app-home',
   template: `
+  <div>
     <p [class]="counter % 2 === 0 ? 'even' : 'odd'">
       home works!
       {{ counter }}
     </p>
+    <app-button title="coucou" (click)="onClick()"></app-button>
+  </div>
   `,
   styleUrls: [ "../app.component.scss" ]
 })
 export class HomeComponent implements OnInit {
 
   counter !: number;  // !: = jamais null ou undefined
-  id ?: Timeout;      // ?: = peut être null ou undefined
+  id ?: Timeout;      // ?: = peut être null ou undefined<w
 
   constructor() { }
 
@@ -24,7 +27,6 @@ export class HomeComponent implements OnInit {
   
     this.id = setInterval(() => {
       this.counter++;
-      console.log("Expérience en cours");
     }, 1000);
   }
 
@@ -32,4 +34,7 @@ export class HomeComponent implements OnInit {
     clearInterval(this.id);
   }
 
+  onClick() : void {
+    alert("Coucou");
+  }
 }
