@@ -15,6 +15,7 @@ h1 {
 
       h2 {
          color: #8E4EC6;
+         margin-bottom: 20px;
       }
 
       // ::ng-deep pour styliser les composants enfants
@@ -26,7 +27,7 @@ h1 {
             border-radius: 8px;
             margin: 10px 0;
             font-size: 1.1rem;
-      }
+         }
 
       }
    }

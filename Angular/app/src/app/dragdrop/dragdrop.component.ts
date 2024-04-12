@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-// Définition de l'interface IItemObject
-interface IItemObject {
-  id: number;
-  name: string;
-}
+import { IItemObject } from "../../types";
 
 @Component({
   selector: 'app-dragdrop',
@@ -14,19 +9,19 @@ interface IItemObject {
 })
 export class DragdropComponent implements OnInit {
 
-  itemObjectsLeft: IItemObject[] = [
+  todo: IItemObject[] = [
     { id: 1, name: 'Créer la classe User' },
     { id: 2, name: 'Créer la classe Task' },
     { id: 3, name: 'Créer l\'enum Status' },
   ];
-  
-  itemObjectsCenter: IItemObject[] = [
+
+  ongoing: IItemObject[] = [
     { id: 1, name: 'Créer la classe User' },
     { id: 2, name: 'Créer la classe Task' },
     { id: 3, name: 'Créer l\'enum Status' },
   ];
  
-  itemObjectsRight: IItemObject[] = [
+  done: IItemObject[] = [
     { id: 4, name: 'Powerpoint' },
     { id: 5, name: 'Création de la classe Project' },
     { id: 6, name: 'DTO' }
