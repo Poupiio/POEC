@@ -1,0 +1,38 @@
+h1 {
+   text-align: center;
+   color: coral;
+   margin-bottom: 30px;
+}
+
+
+.form {
+   border: solid 2px #8e4ec638;
+   padding: 15px;
+   border-radius: 8px;
+
+   h2 {
+      text-align: center;
+      font-size: 1.5rem;
+      color: #8E4EC6;
+      margin-bottom: 30px;
+   }
+
+   .taskActions {
+      background: #8E4EC6;
+      color: #fff;
+      font-weight: 600;
+   }
+
+   .addTask {
+      background-color: coral;
+      border: none;
+      font-weight: 600;
+      border-radius: 50%;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+         box-shadow: 0 0 18px 3px coral;
+      }
+   }
+
+}

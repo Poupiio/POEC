@@ -18,7 +18,7 @@ type Timeout = ReturnType<typeof setInterval>;
 export class HomeComponent implements OnInit {
 
   counter !: number;  // !: = jamais null ou undefined
-  id ?: Timeout;      // ?: = peut être null ou undefined<w
+  id ?: Timeout;      // ?: = peut être null ou undefined
 
   constructor() { }
 
