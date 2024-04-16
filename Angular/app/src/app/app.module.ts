@@ -12,6 +12,8 @@ import { DragdropComponent } from './dragdrop/dragdrop.component';
 import { FormsModule } from '@angular/forms';
 import { SortableModule } from 'ngx-bootstrap/sortable';
 import { TaskComponent } from './task/task.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MyhttpService } from 'myhttp.service';
 
 
 @NgModule({
@@ -22,7 +24,7 @@ import { TaskComponent } from './task/task.component';
     ButtonComponent,
     ModalComponent,
     DragdropComponent,
-    TaskComponent
+    TaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,8 +32,13 @@ import { TaskComponent } from './task/task.component';
     BrowserAnimationsModule,
     FormsModule,
     SortableModule.forRoot(),
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: MyhttpService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

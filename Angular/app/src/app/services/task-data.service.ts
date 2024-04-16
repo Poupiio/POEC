@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Task, TaskForm, TaskStatus } from 'src/types';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskDataService {
   tasks: Task[] = [];
+
+  constructor(
+    private http: HttpClient
+  ) { }
 
   getTasks() : Task[] {
     return this.tasks;
@@ -15,20 +20,10 @@ export class TaskDataService {
     return this.tasks.find(task => task.id === id);
   }
 
-  addTask(task: TaskForm) : void {
-    const newTask: Task = {
-      id: this.tasks.reduce((max, task) => task.id > max ? task.id : max, 0) + 1,
-      title: task.title,
-      description: task.description,
-      status: task.status as TaskStatus,
-      estimationHours: task.estimationHours as number,
-      projectId: task.projectId as number
-    }
+  async addTask(task: TaskForm) {
+    const newTask = await this.http.post<Task>("/tasks", task).toPromise();
+    if (!newTask) throw new Error("Task not created");
 
     this.tasks = [... this.tasks, newTask];
   }
-
-
-  constructor(
-  ) { }
 }
