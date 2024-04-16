@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Task, TaskForm, TaskStatus } from 'src/types';
 import { HttpClient } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ export class TaskDataService {
     private http: HttpClient
   ) { }
 
-  getTasks() : Task[] {
-    return this.tasks;
+  getTasks() : Observable<Task[]> {
+    return this.http.get<Task[]>("/tasks").pipe(tap(res => console.log(res)
+    ));
   }
 
   getTaskById(id: number): Task | undefined {

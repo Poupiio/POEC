@@ -18,12 +18,16 @@ export class DragdropComponent implements OnInit {
   constructor(private taskDataService: TaskDataService) { }
 
   ngOnInit(): void {
-    this.updateTasks();
+    // Je récupère les tâches depuis la BDD
+    this.taskDataService.getTasks().subscribe(res => {
+      this.tasks = res;
+
+      // Puis je les dispatche dans les colonnes correspondant au statut de la tâche
+      this.updateTaskLists();
+    });
   }
 
-  updateTasks(): void {
-    this.tasks = this.taskDataService.getTasks();
-    
+  updateTaskLists(): void {
     this.todo = this.tasks
       .filter(task => task.status === TaskStatus.TODO)
       .map(task => ({ title: task.title }));
