@@ -23,6 +23,7 @@ export class DragdropComponent implements OnInit {
 
   updateTasks(): void {
     this.tasks = this.taskDataService.getTasks();
+    
     this.todo = this.tasks
       .filter(task => task.status === TaskStatus.TODO)
       .map(task => ({ title: task.title }));

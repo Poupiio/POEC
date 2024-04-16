@@ -35,12 +35,12 @@
       placeholderItem="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
       placeholderClass="placeholderStyle text-center"
       wrapperClass="sortable-wrapper"
-      *ngFor="let task of tasks"
     ></bs-sortable>
   </div>
+  
 </div>
 
-<!-- <p *ngFor="let task of tasks">
-  {{ task | json }}
-</p> -->
-<a routerLink="/task/add">Ajouter une tâche</a>
+<div class="d-flex justify-content-center">
+  <button routerLink="/task/add" class="btn btn-primary addTask">Ajouter une tâche</button>
+</div>
+
