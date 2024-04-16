@@ -9,7 +9,7 @@ import { ButtonComponent } from './lib/button/button.component';
 import { ModalComponent } from './lib/modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragdropComponent } from './dragdrop/dragdrop.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { SortableModule } from 'ngx-bootstrap/sortable';
 import { TaskComponent } from './task/task.component';
 
@@ -30,7 +30,6 @@ import { TaskComponent } from './task/task.component';
     BrowserAnimationsModule,
     FormsModule,
     SortableModule.forRoot(),
-    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

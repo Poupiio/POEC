@@ -1,5 +1,5 @@
 header {
-   box-shadow: inset 0px 0px 20px 4px rgba(251,235,251,0.81);
+   box-shadow: 0px 0px 18px -4px rgba(251,235,251,0.81);
 
    nav {
       ul {
@@ -8,16 +8,20 @@ header {
          align-items: center;
 
          li {
-            padding: 15px;
+            padding: 30px 15px;
             margin-right: 40px;
             font-size: 1.5rem;
-            color: #8E4EC6;
-            text-transform: uppercase;
-            cursor: pointer;
             transition: 0.3s ease-in-out;
-          
+            
             &:hover {
                transform: scale(1.2);
+            }
+
+            a {
+               text-decoration: none;
+               color: #8E4EC6;
+               text-transform: uppercase;
+               cursor: pointer;
             }
          }
       }

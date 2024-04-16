@@ -1,6 +1,10 @@
 export type IItemObject = {
    id: number;
-   name: string;
+   title: string;
+   description: string;
+   // status: TaskStatus;
+   estimation: number;
+   projectId: number;
 }
 
 export const enum TaskStatus {
@@ -26,10 +30,18 @@ export type User = {
    projects: Project[]
 }
 
+export type TaskForm = {
+   title: string;
+   description?: string;
+   status: TaskStatus;
+   estimationHours: number;
+   projectId: number;
+}
+
 export type Task = {
    id: number;
    title: string;
-   description: string;
+   description?: string;
    status: TaskStatus;
    estimationHours: number;
    projectId: number;
