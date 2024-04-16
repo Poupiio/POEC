@@ -15,10 +15,10 @@ export class TaskDataService {
     return this.tasks.find(task => task.id === id);
   }
 
-  addTask(task: Partial<TaskForm>) : void {
+  addTask(task: TaskForm) : void {
     const newTask: Task = {
       id: this.tasks.reduce((max, task) => task.id > max ? task.id : max, 0) + 1,
-      title: task.title as string,
+      title: task.title,
       description: task.description,
       status: task.status as TaskStatus,
       estimationHours: task.estimationHours as number,
@@ -28,9 +28,6 @@ export class TaskDataService {
     this.tasks = [... this.tasks, newTask];
   }
 
-  // setTasks(title: string) : void {
-  //   this.titles = [...this.titles, ...title];
-  // }
 
   constructor(
   ) { }

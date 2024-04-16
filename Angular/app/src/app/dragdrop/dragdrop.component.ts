@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IItemObject } from "../../types";
+import { IItemObject, Task, TaskToDisplay, TaskStatus  } from "../../types";
 import { TaskDataService } from '../services/task-data.service';
-import { Task } from '../../types';
 
 @Component({
   selector: 'app-dragdrop',
@@ -11,32 +10,28 @@ import { Task } from '../../types';
 })
 export class DragdropComponent implements OnInit {
 
-  tasks : Task[] = [];
+  tasks: Task[] = [];
+  todo: TaskToDisplay[] = [];
+  ongoing: TaskToDisplay[] = [];
+  done: TaskToDisplay[] = [];
 
-  todo: IItemObject[] = [
-    { id: 1, title: 'Créer la classe User', description: "c'est la description", estimation: 2, projectId: 3 },
-    // { id: 2, title: 'Créer la classe Task' },
-    // { id: 3, title: 'Créer l\'enum Status' },
-  ];
-
-  ongoing: IItemObject[] = [
-    // { id: 1, title: 'Créer la classe User' },
-    // { id: 2, title: 'Créer la classe Task' },
-    // { id: 3, title: 'Créer l\'enum Status' },
-  ];
- 
-  done: IItemObject[] = [
-    // { id: 4, title: 'Powerpoint' },
-    // { id: 5, title: 'Création de la classe Project' },
-    // { id: 6, title: 'DTO' }
-  ];
-
-  constructor(
-    private taskDataService: TaskDataService
-  ) { }
+  constructor(private taskDataService: TaskDataService) { }
 
   ngOnInit(): void {
+    this.updateTasks();
+  }
+
+  updateTasks(): void {
     this.tasks = this.taskDataService.getTasks();
+    this.todo = this.tasks
+      .filter(task => task.status === TaskStatus.TODO)
+      .map(task => ({ title: task.title }));
+    this.ongoing = this.tasks
+      .filter(task => task.status === TaskStatus.ONGOING)
+      .map(task => ({ title: task.title }));
+    this.done = this.tasks
+      .filter(task => task.status === TaskStatus.DONE)
+      .map(task => ({ title: task.title }));
   }
 
 }
