@@ -6,14 +6,15 @@ import { DragdropComponent } from './dragdrop/dragdrop.component';
 import { TaskComponent } from './task/task.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: "about", component: AboutComponent },
+  { path: "about", component: AboutComponent, canActivate: [AuthGuard] },
   { path: "about/id", component: AboutComponent },
-  { path: "dragdrop", component: DragdropComponent },
-  { path: "task", component: TaskComponent },
-  { path: "task/add", component: TaskComponent },
+  { path: "dragdrop", component: DragdropComponent, canActivate: [AuthGuard] },
+  { path: "task", component: TaskComponent, canActivate: [AuthGuard] },
+  { path: "task/add", component: TaskComponent, canActivate: [AuthGuard] },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
 ];

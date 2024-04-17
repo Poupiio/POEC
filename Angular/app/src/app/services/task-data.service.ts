@@ -16,8 +16,7 @@ export class TaskDataService {
   ) { }
 
   getTasks() : Observable<Task[]> {
-    return this.http.get<Task[]>("/tasks").pipe(tap(res => console.log(res)
-    ));
+    return this.http.get<Task[]>("/tasks").pipe();
   }
 
   getTaskById(id: number): Task | undefined {

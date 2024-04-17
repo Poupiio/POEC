@@ -14,7 +14,10 @@
             <a routerLink="/task/add">Add Task</a>
          </li>
          <li>
-            <a routerLink="/login">Login</a>
+            <a routerLink="/login" *ngIf="!isLoggedIn">Login</a>
+         </li>
+         <li>
+            <a routerLink="/login" *ngIf="isLoggedIn" (click)="logout()">Disconnect</a>
          </li>
       </ul>
    </nav>

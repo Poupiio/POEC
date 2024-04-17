@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 type Timeout = ReturnType<typeof setInterval>;
 
@@ -25,9 +27,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.counter = 0;
   
-    this.id = setInterval(() => {
-      this.counter++;
-    }, 1000);
+    // this.id = setInterval(() => {
+    //   this.counter++;
+    // }, 1000);
+
   }
 
   ngOnDestroy(): void {

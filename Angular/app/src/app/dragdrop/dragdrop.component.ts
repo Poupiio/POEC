@@ -30,13 +30,14 @@ export class DragdropComponent implements OnInit {
   updateTaskLists(): void {
     this.todo = this.tasks
       .filter(task => task.status === TaskStatus.TODO)
-      .map(task => ({ title: task.title }));
+      .map(task => ({ title: task.title, id: task.id }));
     this.ongoing = this.tasks
       .filter(task => task.status === TaskStatus.ONGOING)
-      .map(task => ({ title: task.title}));
+      .map(task => ({ title: task.title, id: task.id }));
     this.done = this.tasks
       .filter(task => task.status === TaskStatus.DONE)
-      .map(task => ({ title: task.title }));
+      .map(task => ({ title: task.title, id: task.id }));
+
   }
 
   deleteTask(id: number) {

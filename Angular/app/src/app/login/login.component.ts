@@ -11,7 +11,6 @@ export class LoginComponent implements OnInit {
 
   email: string = "";
   password: string = "";
-  message: string = "Vous êtes déconnecté";
 
   constructor(
     private router: Router,
@@ -24,7 +23,7 @@ export class LoginComponent implements OnInit {
     const res = await this.auth.login(this.email, this.password);
 
     if (typeof res === "string") {
-      this.message = "Email ou mot de passe invalide";
+      alert("Email ou mot de passe invalide");
     } else {
       this.email = "";
       this.password = "";
@@ -32,7 +31,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async logout() {
+  // async logout() {
 
-  }
+  // }
 }
