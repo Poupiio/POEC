@@ -28,8 +28,11 @@ export class LoginComponent implements OnInit {
     } else {
       this.email = "";
       this.password = "";
-      this.router.navigate(['/']);
+      this.router.navigate(['/dragdrop']);
     }
   }
 
+  async logout() {
+
+  }
 }

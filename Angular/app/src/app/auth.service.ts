@@ -33,6 +33,8 @@ export class AuthService {
       
       this.accessToken = res.accessToken;
 
+      localStorage.setItem("token", this.accessToken);
+      
       return user;
       
     } catch (e: any) {

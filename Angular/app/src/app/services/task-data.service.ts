@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Task, TaskForm, TaskStatus } from 'src/types';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class TaskDataService {
   tasks: Task[] = [];
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private auth: AuthService
   ) { }
 
   getTasks() : Observable<Task[]> {
