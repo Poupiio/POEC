@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  email: string = "";
+  password: string = "";
+  message: string = "Vous êtes déconnecté";
+
+  constructor(
+    private router: Router,
+    private auth: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  async login() {
+    const res = await this.auth.login(this.email, this.password);
+
+    if (typeof res === "string") {
+      this.message = "Email ou mot de passe invalide";
+    } else {
+      this.email = "";
+      this.password = "";
+      this.router.navigate(['/']);
+    }
   }
 
 }

@@ -17,11 +17,13 @@ export type Project = {
 }
 
 export type User = {
-   id: number;
    name: string;
    password: string;
    email: string;
-   projects: Project[]
+   projects: Project[];
+   sub: string;   // correspond à l'id du User
+   exp: string;   // expiration date
+   iat: number;   // issued at (date)
 }
 
 export type TaskForm = {
