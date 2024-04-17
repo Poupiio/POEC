@@ -28,4 +28,8 @@ export class TaskDataService {
 
     this.tasks = [... this.tasks, newTask];
   }
+
+  async deleteTask(id: number) {
+    await this.http.delete(`/tasks/${id}`).toPromise();
+  }
 }

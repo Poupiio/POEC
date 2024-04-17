@@ -62,7 +62,7 @@ h1 {
       left: 0;
     }
     
-    &:after {
+   &:after {
       content: "";
       width: 100%;
       z-index: -1;
@@ -72,5 +72,6 @@ h1 {
       left: 5px;
       transition: 0.2s;
       background-color: #8E4EC6;
-    }
+   }
+
 }

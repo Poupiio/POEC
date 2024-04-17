@@ -33,10 +33,16 @@ export class DragdropComponent implements OnInit {
       .map(task => ({ title: task.title }));
     this.ongoing = this.tasks
       .filter(task => task.status === TaskStatus.ONGOING)
-      .map(task => ({ title: task.title }));
+      .map(task => ({ title: task.title}));
     this.done = this.tasks
       .filter(task => task.status === TaskStatus.DONE)
       .map(task => ({ title: task.title }));
+  }
+
+  deleteTask(id: number) {
+    this.taskDataService.deleteTask(id).then(() => {
+      this.taskDataService.getTasks().subscribe(tasks => this.tasks = tasks);
+    });
   }
 
 }

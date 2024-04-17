@@ -14,6 +14,8 @@ import { SortableModule } from 'ngx-bootstrap/sortable';
 import { TaskComponent } from './task/task.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MyhttpService } from 'myhttp.service';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { MyhttpService } from 'myhttp.service';
     ModalComponent,
     DragdropComponent,
     TaskComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
