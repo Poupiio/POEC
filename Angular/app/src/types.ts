@@ -38,10 +38,11 @@ export type TaskToDisplay = {
    title: string;
 }
 
-export type TaskWithDatabaseId = {
-   id: number; // ID local de la liste
+export type TaskToUpdate = {
    title: string;
-   databaseId: number; // ID de la base de données
+   description?: string;
+   status: TaskStatus;
+   estimationHours: number;
 }
 
 export type Task = {

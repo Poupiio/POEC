@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Task, TaskForm, TaskStatus } from 'src/types';
+import { Task, TaskForm, TaskStatus, TaskToUpdate } from 'src/types';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { AuthService } from '../auth.service';
@@ -29,6 +29,16 @@ export class TaskDataService {
 
     this.tasks = [... this.tasks, newTask];
   }
+
+ async updateTask(id: number, task: TaskToUpdate) {
+  console.log("côté service : " + id);
+
+  const taskUpdated = await this.http.put<Task>(`/tasks/${id}`, task).toPromise();
+
+  if (!taskUpdated) throw new Error("Task not created");
+
+  this.tasks = [... this.tasks, taskUpdated];
+}
 
   async deleteTask(id: number) {
     console.log("côté service : " + id);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IItemObject, Task, TaskToDisplay, TaskStatus,
   } from "../../types";
 import { TaskDataService } from '../services/task-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dragdrop',
@@ -16,7 +17,9 @@ export class DragdropComponent implements OnInit {
   ongoing: TaskToDisplay[] = [];
   done: TaskToDisplay[] = [];
 
-  constructor(private taskDataService: TaskDataService) { }
+  constructor(private taskDataService: TaskDataService,
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
     // Je récupère les tâches depuis la BDD
@@ -51,22 +54,27 @@ export class DragdropComponent implements OnInit {
     console.log(this.todo, this.ongoing, this.done);
   }
 
-  // async deleteTask(id: number) {
-  //   console.log("côté component : " + id);
-
-  
+  async getTaskDetails(id: number) {
+    console.log("hihi");
     
-    // try {
-    //   await this.taskDataService.deleteTask(id);
-    //   // Mise à jour locale de la liste des tâches après suppression
-    //   this.tasks = this.tasks.filter(task => task.id !== id);
-    //   this.updateTaskLists();
-    // } catch (error) {
-    //   console.error("Une erreur s'est produite lors de la suppression de la tâche :", error);
-    //   // Gérer l'erreur si nécessaire
-    // }
-  // }
+  }
 
+  redirectUpdateForm(taskId: number) {
+    this.router.navigate(['/task/update', taskId]);
+  }
+  // async updateTask(id: number) {
+  //   console.log("coucou toi !");
+
+  //   const taskToUpdate = this.tasks.find(task => task.id === id);
+  //   console.log(taskToUpdate);
+    
+  //   if (taskToUpdate) {
+  //     await this.taskDataService.updateTask(id, taskToUpdate);
+  //   } else {
+  //     console.error('Task not found');
+  //   }
+    
+  // }
 
   async deleteTask(id: number) {
     console.log("ID de la tâche dans la base de données : ", id);

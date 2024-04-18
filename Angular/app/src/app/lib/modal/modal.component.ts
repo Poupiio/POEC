@@ -13,19 +13,23 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
   styles: [`
     .overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       background-color: rgba(0,0,0,0.5);
       color: #060905;
+
+      width: 450px;
+      height: 450px;
+      border: solid 2px red;
     }
     .overlay .modal {
+      border: solid 2px blue;
       margin: 15% auto;
       background-color: #fefefe;
-      min-width: 300px;
-      max-width: 80%;
-      min-height: 200px;
+      color: white;
+      height: 100%;
+      width: 100%;
       position: relative;
       padding: 10px 20px;
     }

@@ -16,6 +16,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MyhttpService } from 'myhttp.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UpdateTaskComponent } from './update-task/update-task.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { RegisterComponent } from './register/register.component';
     TaskComponent,
     LoginComponent,
     RegisterComponent,
+    UpdateTaskComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@
       placeholderItem="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
       placeholderClass="placeholderStyle text-center"
       wrapperClass="sortable-wrapper"
-      [itemTemplate]="removeTask"   
+      [itemTemplate]="myTemplate"   
     >
   </bs-sortable>
   </div>
@@ -33,7 +33,7 @@
       placeholderItem="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
       placeholderClass="placeholderStyle text-center"
       wrapperClass="sortable-wrapper"
-      [itemTemplate]="removeTask"
+      [itemTemplate]="myTemplate"
     >
   </bs-sortable>
   </div>
@@ -47,17 +47,28 @@
       placeholderItem="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
       placeholderClass="placeholderStyle text-center"
       wrapperClass="sortable-wrapper"
-      [itemTemplate]="removeTask"
+      [itemTemplate]="myTemplate"
     >
   </bs-sortable>
   </div>
   
-  <ng-template #removeTask let-item="item" let-index="index">
+  <ng-template #myTemplate let-item="item" let-index="index">
     <div class="d-flex justify-content-between align-items-center">
       <div>{{ item.initData.title }}</div>
-      <div type="button" class="delete-icon btn btn-danger" (click)="deleteTask(item.initData.id)">
-        <i class="bi bi-trash"></i>
+      
+      <div type="button" class="btn btn-info" (click)="getTaskDetails(item.initData.id)">
+        <i class="bi bi-eye-fill taskDetail"></i>
+      </div>
+
+      <div type="button" routerLink="/task/update" class="btn btn-success" (click)="redirectUpdateForm(item.initData.id)">
+        <i class="bi bi-pencil-fill"></i>
+      </div>
+
+      <div type="button" class="btn btn-danger" (click)="deleteTask(item.initData.id)">
+        <i class="bi bi-trash-fill"></i>
       </div>
     </div>
   </ng-template>
+
+  <a routerLink="/task/add">Ajouter une tâche</a>
 </div>
