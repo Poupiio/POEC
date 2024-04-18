@@ -38,6 +38,12 @@ export type TaskToDisplay = {
    title: string;
 }
 
+export type TaskWithDatabaseId = {
+   id: number; // ID local de la liste
+   title: string;
+   databaseId: number; // ID de la base de données
+}
+
 export type Task = {
    id: number;
    title: string;

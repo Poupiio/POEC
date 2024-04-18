@@ -31,6 +31,15 @@ export class TaskDataService {
   }
 
   async deleteTask(id: number) {
-    await this.http.delete(`/tasks/${id}`).toPromise();
+    console.log("côté service : " + id);
+    
+    try {
+      console.log("ID de la tâche à supprimer :", id);
+          
+      await this.http.delete(`/tasks/${id}`).toPromise();
+    } catch (error) {
+      console.error("Une erreur s'est produite lors de la suppression de la tâche :", error);
+      throw error;
+    }
   }
 }
