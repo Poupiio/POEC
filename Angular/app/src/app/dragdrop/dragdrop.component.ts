@@ -17,8 +17,9 @@ export class DragdropComponent implements OnInit {
   ongoing: TaskToDisplay[] = [];
   done: TaskToDisplay[] = [];
 
-  constructor(private taskDataService: TaskDataService,
-    private router:Router
+  constructor(
+    private taskDataService: TaskDataService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -29,10 +30,6 @@ export class DragdropComponent implements OnInit {
       // Puis je les dispatche dans les colonnes correspondant au statut de la tâche
       this.displayTasks();
     });
-
-    // this.taskDataService.getTaskById(id: number) {
-
-    // }
   }
 
   displayTasks(): void {
@@ -50,8 +47,6 @@ export class DragdropComponent implements OnInit {
     this.done = this.tasks
       .filter(task => task.status === TaskStatus.DONE)
       .map(task => ({ title: task.title, id: task.id }));
-  
-    console.log(this.todo, this.ongoing, this.done);
   }
 
   async getTaskDetails(id: number) {
@@ -59,22 +54,10 @@ export class DragdropComponent implements OnInit {
     
   }
 
+  // Redirection vers le formulaire de modification en passant l'id de la tâche en paramètre URL
   redirectUpdateForm(taskId: number) {
     this.router.navigate(['/task/update', taskId]);
   }
-  // async updateTask(id: number) {
-  //   console.log("coucou toi !");
-
-  //   const taskToUpdate = this.tasks.find(task => task.id === id);
-  //   console.log(taskToUpdate);
-    
-  //   if (taskToUpdate) {
-  //     await this.taskDataService.updateTask(id, taskToUpdate);
-  //   } else {
-  //     console.error('Task not found');
-  //   }
-    
-  // }
 
   async deleteTask(id: number) {
     console.log("ID de la tâche dans la base de données : ", id);

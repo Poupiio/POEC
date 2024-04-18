@@ -22,7 +22,6 @@ export class TaskComponent implements OnInit {
   ) { }
 
   submit() : void {
-    // Partial indique qu'un champ peut potentiellement être vide
     const task: TaskForm = {
       title: this.title,
       description: this.description,

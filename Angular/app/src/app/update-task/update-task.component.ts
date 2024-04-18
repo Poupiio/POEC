@@ -16,6 +16,7 @@ export class UpdateTaskComponent implements OnInit {
   estimation: number = 1;
   taskId: number = 1;
 
+  // Utilisation de ActivatedRoute pour récupérer l'id de la tâche via les paramètres de l'URL
   constructor(
     private router: Router,
     private taskDataService: TaskDataService,
@@ -27,12 +28,11 @@ export class UpdateTaskComponent implements OnInit {
 
   async submit(): Promise<void> {
 
-    // Récupérer l'ID de la tâche de la route actuelle
+    // Récupération de l'id de la tâche via les paramètres url
     this.route.params.subscribe(params => {
       const taskId = params['id'];
-      console.log("id récupéré : " + taskId);
 
-
+      // Création d'un objet de type TaskToUpdate pour envoyer les données au serveur
       const taskToUpdate: TaskToUpdate = {
         title: this.title,
         description: this.description,
@@ -40,9 +40,9 @@ export class UpdateTaskComponent implements OnInit {
         estimationHours: this.estimation
       };
 
-      console.log("Données à modifier : " + this.title, this.description, this.status, this.estimation);
-    
       this.taskDataService.updateTask(taskId, taskToUpdate);
+
+      // Redirection vers la page du tableau Kanban
       this.router.navigate(['/dragdrop']);
     });
     
