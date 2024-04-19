@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: "dragdrop", component: DragdropComponent },
 
   // { path: "task", component: TaskComponent, canActivate: [AuthGuard] },
-  { path: "task", component: TaskComponent },
+  // { path: "task", component: TaskComponent },
 
   // { path: "task/add", component: TaskComponent, canActivate: [AuthGuard] },
   { path: "task/add", component: TaskComponent },

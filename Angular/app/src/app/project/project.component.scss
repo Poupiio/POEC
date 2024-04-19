@@ -7,9 +7,6 @@ h5 {
    margin-bottom: 20px;
 }
 
-.addProject {
-   margin-bottom: 50px;
-}
 
 h1 {
    text-align: center;
@@ -18,7 +15,6 @@ h1 {
 }
 
 .wrapper {
-   width: 60%;
    margin: 0 auto;
 
    .status {
@@ -44,7 +40,7 @@ h1 {
             border-radius: 8px;
             margin: 10px 0;
             font-size: 1.1rem;
-            word-break: break-word;
+            // word-break: break-word;
 
             .taskDetail {
                color: white;
