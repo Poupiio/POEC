@@ -4,7 +4,7 @@ export type IItemObject = {
 }
 
 export const enum TaskStatus {
-  TODO = "TODO",
+  TO_DO = "TO_DO",
   ONGOING = "ONGOING",
   DONE = "DONE"
 }

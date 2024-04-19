@@ -35,7 +35,7 @@ export class DragdropComponent implements OnInit {
   displayTasks(): void {
     // COLONNE A FAIRE
     this.todo = this.tasks
-      .filter(task => task.status === TaskStatus.TODO)
+      .filter(task => task.status === TaskStatus.TO_DO)
       .map(task => ({ title: task.title, id: task.id  }));
 
     // COLONNE EN COURS

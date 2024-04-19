@@ -10,3 +10,85 @@ h5 {
 .addProject {
    margin-bottom: 50px;
 }
+
+h1 {
+   text-align: center;
+   margin-bottom: 30px;
+   color: coral;
+}
+
+.wrapper {
+   width: 60%;
+   margin: 0 auto;
+
+   .status {
+      border: solid 2px coral;
+      margin: 0 auto;
+      border-radius: 8px;
+
+      h2 {
+         color: #8E4EC6;
+         margin-bottom: 20px;
+         text-transform: uppercase;
+         padding-top: 10px;
+         font-size: 1.3rem;
+         font-weight: 700;
+      }
+
+      // ::ng-deep pour styliser les composants enfants
+      ::ng-deep {
+         .sortable-item {
+            cursor: pointer;
+            border: solid 2px lightpink;
+            padding: 5px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 1.1rem;
+            word-break: break-word;
+
+            .taskDetail {
+               color: white;
+            }
+         }
+      }
+
+   }
+}
+
+.addTask {
+   margin-top: 60px;
+   font-size: 1.2rem;
+   min-width: 130px;
+   height: 40px;
+   color: #8E4EC6;
+   padding: 5px 10px;
+   font-weight: bold;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   position: relative;
+   display: inline-block;
+   outline: none;
+   border: 1px solid #8E4EC6;
+   color: #fff;
+   background: transparent;
+   z-index: 0;
+   border-radius: 0;
+
+    &:hover:after {
+      top: 0;
+      left: 0;
+    }
+    
+   &:after {
+      content: "";
+      width: 100%;
+      z-index: -1;
+      position: absolute;
+      height: 100%;
+      top: 5px;
+      left: 5px;
+      transition: 0.2s;
+      background-color: #8E4EC6;
+   }
+
+}

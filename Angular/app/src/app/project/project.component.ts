@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../services/project.service';
 import { Router } from '@angular/router';
-import { Project } from 'src/types';
+import { Project, TaskStatus, TaskToDisplay, Task } from 'src/types';
 import { UserService } from '../services/user.service';
 import { TaskDataService } from '../services/task-data.service';
 
@@ -16,6 +16,11 @@ export class ProjectComponent implements OnInit {
   offcanvasVisible: boolean = false;
   projects: Project[] = [];
 
+  tasks: Task[] = [];
+  todo: TaskToDisplay[] = [];
+  ongoing: TaskToDisplay[] = [];
+  done: TaskToDisplay[] = [];
+
   
   constructor(
     private projectService: ProjectService,
@@ -24,6 +29,7 @@ export class ProjectComponent implements OnInit {
     private router: Router
   ) { }
   
+  // Gestion de l'affichage de la side bar
   toggleOffcanvas(): void {
     this.offcanvasVisible = !this.offcanvasVisible;
     const offcanvasElement = document.getElementById('myOffCanvas');
@@ -34,16 +40,21 @@ export class ProjectComponent implements OnInit {
     }
   }
 
+  // Fermer la side bar au clic sur un nom de projet
+  closeOffcanvas(): void {
+    this.offcanvasVisible = false;
+    const offcanvasElement = document.getElementById('myOffCanvas');
+    if (offcanvasElement) {
+      offcanvasElement.classList.remove('show');
+    }
+  }
+
   addProject(name: string) {
     console.log("coucou");
     
   }
 
-  ngOnInit(): void {
-    this.projectService.getProjects().subscribe(res => {
-      this.projects = res;
-    });
-  }
+  ngOnInit(): void { }
 
   async getProjects() {
     this.projectService.getProjects().subscribe(res => {
@@ -57,21 +68,43 @@ export class ProjectComponent implements OnInit {
     
     this.taskService.getAllTasks(projectId).subscribe(tasks => {
       console.log(tasks);
+      
+      this.displayTasks();
     });
   }
 
-  // async displayTasks() {
+  displayTasks(): void {
+    // COLONNE A FAIRE
+    this.todo = this.tasks
+      .filter(task => task.status === TaskStatus.TO_DO)
+      .map(task => ({ title: task.title, id: task.id  }));
 
-  // }
+    // COLONNE EN COURS
+    this.ongoing = this.tasks
+      .filter(task => task.status === TaskStatus.ONGOING)
+      .map(task => ({ title: task.title, id: task.id }));
 
-  // getProjectsByCurrentUser() {
-  //   // Récupérez l'utilisateur actuellement connecté
-  //   this.userService.getCurrentUser().subscribe((user: UserToGet) => {
-  //     // Utilisez l'ID de l'utilisateur pour récupérer ses projets
-  //     this.projectService.getUserProjects(user.id).subscribe(projects => {
-  //       this.projects = projects;
-  //     });
-  //   });
-  // }
+    // COLONNE TERMINÉ
+    this.done = this.tasks
+      .filter(task => task.status === TaskStatus.DONE)
+      .map(task => ({ title: task.title, id: task.id }));
 
+      console.log(this.todo, this.ongoing, this.done);
+      
+  }
+
+  getTaskDetails(id: number) {
+    console.log("Détails d'une tâche");
+    
+  }
+
+  redirectUpdateForm(id: number) {
+    console.log("Modification de tâche");
+    
+  }
+
+  deleteTask(id: number) {
+    console.log("Suppression d'une tâche");
+    
+  }
 }

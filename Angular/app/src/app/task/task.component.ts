@@ -12,7 +12,7 @@ import { TaskDataService } from '../services/task-data.service';
 export class TaskComponent implements OnInit {
   title: string = "";
   description: string ="";
-  status: TaskStatus = TaskStatus.TODO;
+  status: TaskStatus = TaskStatus.TO_DO;
   estimation: number = 1;
   projectId: number = 1;
   

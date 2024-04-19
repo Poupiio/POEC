@@ -12,7 +12,7 @@ import { TaskForm, TaskStatus, TaskToUpdate } from 'src/types';
 export class UpdateTaskComponent implements OnInit {
   title: string = "";
   description: string = "";
-  status: TaskStatus = TaskStatus.TODO;
+  status: TaskStatus = TaskStatus.TO_DO;
   estimation: number = 1;
   taskId: number = 1;
 
