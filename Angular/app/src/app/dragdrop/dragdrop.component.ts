@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IItemObject, Task, TaskToDisplay, TaskStatus,
+import { Task, TaskToDisplay, TaskStatus,
   } from "../../types";
 import { TaskDataService } from '../services/task-data.service';
 import { Router } from '@angular/router';
@@ -24,12 +24,12 @@ export class DragdropComponent implements OnInit {
 
   ngOnInit(): void {
     // Je récupère les tâches depuis la BDD
-    this.taskDataService.getTasks().subscribe(res => {
-      this.tasks = res;
+    // this.taskDataService.getTasks().subscribe(res => {
+    //   this.tasks = res;
 
-      // Puis je les dispatche dans les colonnes correspondant au statut de la tâche
-      this.displayTasks();
-    });
+    //   // Puis je les dispatche dans les colonnes correspondant au statut de la tâche
+    //   this.displayTasks();
+    // });
   }
 
   displayTasks(): void {

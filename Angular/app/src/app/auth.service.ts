@@ -42,10 +42,11 @@ export class AuthService {
 
   async login(email: string, password: string) : Promise<User | string> {
     try {
-      const res = await this.http.post<LoginResponse>("/login", {
+      const res = await this.http.post<LoginResponse>("/user/login", {
         email,
         password
       }).toPromise();
+      
   
       if (typeof res === "string" || !res)
         throw new Error(res);

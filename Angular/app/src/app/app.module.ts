@@ -17,6 +17,8 @@ import { MyhttpService } from 'myhttp.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UpdateTaskComponent } from './update-task/update-task.component';
+import { ProjectComponent } from './project/project.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { UpdateTaskComponent } from './update-task/update-task.component';
     LoginComponent,
     RegisterComponent,
     UpdateTaskComponent,
+    ProjectComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

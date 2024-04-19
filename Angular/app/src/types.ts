@@ -16,6 +16,10 @@ export type Project = {
    tasks: Task[];
 }
 
+export type ProjectForm = {
+   name: string;
+}
+
 export type User = {
    name: string;
    password: string;
@@ -24,6 +28,18 @@ export type User = {
    sub: string;   // correspond à l'id du User
    exp: string;   // expiration date
    iat: number;   // issued at (date)
+}
+
+export type UserToGet = {
+   id: number;
+   name: string;
+   password: string;
+   email: string;
+   projects: Project[];
+}
+
+export type UserId = {
+   id: number;
 }
 
 export type TaskForm = {

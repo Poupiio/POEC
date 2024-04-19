@@ -1,0 +1,60 @@
+<h1>Page projets</h1>
+
+<button class="btn btn-primary" (click)="toggleOffcanvas()">Mes Projets</button>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="myOffCanvas" aria-labelledby="myOffCanvas">
+   <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="myOffCanvas">Mes Projets</h5>
+      <button type="button" class="btn-close" (click)="toggleOffcanvas()" aria-label="Close"></button>
+   </div>
+   <div class="offcanvas-body">
+      <h5 *ngFor="let project of projects" type="button" (click)="getProjectTasks(project.id)">{{ project.name }}</h5>
+   </div>
+
+   <form class="form mx-auto" #projectForm="ngForm">
+
+   <div class="input-group mb-3">
+      <span class="input-group-text" id="projectName">Nom</span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="POEC Java"
+        aria-label="Nom du projet"
+        aria-describedby="projectName"
+        [(ngModel)]="projectName"
+        name="projectName"
+      />
+   </div>
+   <button type="button" class="btn btn-primary addProject" (click)="addProject(projectName)">Créer un nouveau projet</button>
+
+  </form>
+
+</div>
+
+
+<!-- <div class="container">
+
+
+   <form
+      class="form mx-auto col-sm-12 col-md-10 col-lg-10 col-xl-8 col-xxl-6"
+      #projectForm="ngForm"
+   >
+
+   <div class="input-group mb-3">
+      <span class="input-group-text" id="projectName">Nom du projet</span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="POEC Java"
+        aria-label="Nom du projet"
+        aria-describedby="projectName"
+        [(ngModel)]="projectName"
+        name="projectName"
+      />
+      <span class="input-group-text">
+         <button type="button" class="btn btn-primary">Créer mon projet</button>
+      </span>
+   </div>
+
+  </form>
+</div> -->

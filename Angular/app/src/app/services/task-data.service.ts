@@ -51,4 +51,14 @@ export class TaskDataService {
       throw error;
     }
   }
+
+
+
+
+  // ---------------------------------------------------------------
+  // TEST SANS LE USER
+  getAllTasks(projectId: number) : Observable<Task[]> {
+    return this.http.get<Task[]>(`/project/${projectId}/task`).pipe();
+  }
+
 }
