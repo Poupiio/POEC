@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { TaskStatus, Task, TaskForm } from "../../types";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { TaskStatus, TaskForm } from "../../types";
 import { ActivatedRoute, Router } from '@angular/router';
 // import { TaskDataService } from '../services/task-data.service';
 import { TaskService } from '../services/task.service';
@@ -17,6 +17,8 @@ export class TaskComponent implements OnInit {
   status: TaskStatus = TaskStatus.TO_DO;
   estimation: number = 1;
   projectId: number = 1;
+
+  tasks: Task[] = [];
   
   constructor(
     private router: Router,
@@ -25,7 +27,15 @@ export class TaskComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  submit() : void {
+
+  getProjectTasks(projectId: number) {
+    this.taskService.getAllTasks(projectId).subscribe(res => {
+      this.tasks = res;
+      console.log(this.tasks);
+    });
+  }
+
+  async submit(): Promise<void> {
     const newTask: TaskForm = {
       title: this.title,
       description: this.description,
@@ -34,17 +44,31 @@ export class TaskComponent implements OnInit {
       projectId: this.projectId
     }
 
-    this.taskService.addTask(this.projectId, newTask);
+    console.log(newTask.projectId);
+    
+
+    console.log("Données à ajouter : " + newTask.title, newTask.description, newTask.status, newTask.estimationHours, newTask.projectId);
+    console.log(newTask);
+    
+    try {
+      await this.taskService.addTask(this.projectId, newTask);
   
-    this.router.navigate(['/project']);
-    this.taskService.getAllTasks(this.projectId);
+      // Mise à jour des tâches après avoir ajouté une nouvelle tâche
+      await this.getProjectTasks(this.projectId);
+      
+      // Redirection vers la page du projet avec l'ID du projet
+      this.router.navigate(['/project'], { queryParams: { projectId: this.projectId } });
+    } catch (error) {
+      console.error("Une erreur s'est produite lors de l'ajout de la tâche :", error);
+    }
   }
 
   ngOnInit(): void {
-    // Récupération de l'id du projet depuis l'URL
+    // Récupération de l'id du projet passé en paramètre URL
     this.route.queryParams.subscribe(params => {
-      this.projectId = params['projectId'];
-      console.log('ID du projet:', this.projectId);
+      // Utilisation de l'opérateur unaire = +params pour convertir la string récupérée dans les params en nombre
+      this.projectId = +params['projectId'];
+      console.log("ID du projet : " + this.projectId);
     });
   }
 

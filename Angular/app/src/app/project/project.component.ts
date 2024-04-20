@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../services/project.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Project, TaskStatus, TaskToDisplay, Task, TaskForm, ProjectForm } from 'src/types';
 import { UserService } from '../services/user.service';
 import { TaskDataService } from '../services/task-data.service';
@@ -13,6 +13,8 @@ import { TaskDataService } from '../services/task-data.service';
 })
 export class ProjectComponent implements OnInit {
   pageTitle: string = "";
+  selectedProjectTitle: string = "";
+  
   projectName: string = "";
   updatedProjectName: string = "";
   offcanvasVisible: boolean = false;
@@ -28,11 +30,6 @@ export class ProjectComponent implements OnInit {
   selectedProjectId: number = 1;
 
   // Affichage du formulaire de création de tâche
-  showTaskForm: boolean = false;
-  title: string = "";
-  description: string ="";
-  status: TaskStatus = TaskStatus.TO_DO;
-  estimation: number = 1;
   projectId: number = 1;
   
 
@@ -40,7 +37,8 @@ export class ProjectComponent implements OnInit {
     private projectService: ProjectService,
     private userService: UserService,
     private taskService: TaskDataService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
 
@@ -174,13 +172,14 @@ export class ProjectComponent implements OnInit {
 
   // Afficher les tâches d'un projet en fonction de son ID
   getProjectTasks(projectId: number): void {
-    this.taskService.getAllTasks(projectId).subscribe(tasks => {
-      console.log("Tâches du projet récupérées dans getProjectTasks() : ", tasks);
-      
-      // Je mets à jour le tableau de tâches pour les récupérer correctement par la suite
-      this.tasks = tasks;
+    projectId = this.projectId;
+     // Je récupère les tâches depuis la BDD
+     this.taskService.getAllTasks(projectId).subscribe(res => {
+      this.tasks = res;
+      // Puis je les dispatche dans les colonnes correspondant au statut de la tâche
       this.displayTasks();
     });
+    
   }
 
   displayTasks(): void {
@@ -205,30 +204,17 @@ export class ProjectComponent implements OnInit {
       
   }
 
+  updateTasksDisplay() {
+    this.taskService.getAllTasks(this.projectId).subscribe(res => {
+      this.tasks = res;
+      // Puis je les dispatche dans les colonnes correspondant au statut de la tâche
+      this.displayTasks();
+    });
+  }
+
   getTaskDetails(id: number) {
     console.log("Détails d'une tâche");
     
-  }
-
-  // Affichage ou disparition du formulaire d'ajout de tâche
-  toggleTaskForm(projectId: number) {
-    this.projectId = projectId;
-    this.showTaskForm = !this.showTaskForm;
-  }
-
-  submit() : void {
-    const task: TaskForm = {
-      title: this.title,
-      description: this.description,
-      status: this.status,
-      estimationHours: this.estimation,
-      projectId: this.projectId
-    }
-
-    console.log(task.title, task.description, task.status, task.estimationHours, task.projectId);
-    
-    this.taskService.addTask(task);
-    this.toggleTaskForm(this.projectId);
   }
 
   deleteTask(id: number) {
@@ -239,5 +225,16 @@ export class ProjectComponent implements OnInit {
 
 
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    // Récupérer l'ID du projet depuis les paramètres de l'URL
+    this.route.queryParams.subscribe(params => {
+      this.projectId = params['projectId'];
+
+      console.log("id du projet quand j'arrive sur la page : " + this.projectId);
+    
+    });
+
+    // J'affiche les tâche à chaque appel du composant
+    this.getProjectTasks(this.projectId);
+  }
 }
