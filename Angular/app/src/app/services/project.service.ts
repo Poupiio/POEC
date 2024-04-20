@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Project, ProjectForm, UserToGet } from 'src/types';
 import { UserService } from './user.service';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,17 +20,17 @@ export class ProjectService {
 
   // Afficher tous les projets de la BDD
   getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>("/project").pipe();
+    return this.http.get<Project[]>("/project")
+    .pipe();
   }
+
 
   // Ajouter un projet
   async addProject(project: ProjectForm) {
     const newProject = await this.http.post<Project>("/project", project).toPromise();
     if (!newProject) throw new Error("Project not created");
 
-    // this.projects = [... this.projects, newProject];
-
-     // Rafraîchir la liste des projets depuis le serveur
+    // Mise à jour de la liste des projets depuis le serveur
     this.getProjects().subscribe(projects => {
       this.projects = projects;
     });
@@ -38,13 +38,20 @@ export class ProjectService {
 
   // Modification d'un projet
   async updateProject(id: number, project: ProjectForm) {
+    try {
+      const updatedProject = await this.http.put<Project>(`/project/${id}`, project).toPromise();
 
-    const updatedProject = await this.http.put<Project>(`/project/${id}`, project).toPromise();
+      if (!updatedProject) throw new Error("Aucun projet à modifier");
+  
+      // Mise à jour de la liste des projets depuis le serveur
+      this.getProjects().subscribe(projects => {
+        this.projects = projects;
+        console.log(projects);
+      });
 
-    if (!updatedProject) throw new Error("Task not created");
-
-    // Mise à jour de la liste complète
-    this.projects = [... this.projects, updatedProject];
+    } catch(error) {
+      console.error("Une erreur s'est produite lors de la modification du projet avec l'id " + id);
+    }
   }
 
 

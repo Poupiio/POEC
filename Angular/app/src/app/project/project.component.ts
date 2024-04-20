@@ -13,6 +13,7 @@ import { TaskDataService } from '../services/task-data.service';
 })
 export class ProjectComponent implements OnInit {
   projectName: string = "";
+  updatedProjectName: string = "";
   offcanvasVisible: boolean = false;
   projects: Project[] = [];
 
@@ -23,6 +24,7 @@ export class ProjectComponent implements OnInit {
 
   updateForm: boolean = false;
   addForm: boolean = false;
+  selectedProjectId: number = 1;
 
   // Affichage du formulaire de création de tâche
   showTaskForm: boolean = false;
@@ -67,17 +69,20 @@ export class ProjectComponent implements OnInit {
   // Affichage du formulaire d'ajout de projet
   toggleAddForm(): void {
     this.addForm = !this.addForm;
+    // Je masque le formulaire de modification
+    this.updateForm = false;
   }
 
   // Affichage du formulaire de modification de projet
-  toggleUpdateForm(): void {
+  toggleUpdateForm(projectId: number): void {
+    this.selectedProjectId = projectId;
     this.updateForm = !this.updateForm;
+    // Je masque le formulaire d'ajout
+    this.addForm = false;
   }
   
-
   // Obtenir l'id du projet cliqué
   getProjectId(projectId: number) {
-    console.log("projet id " + projectId);
     this.projectId = projectId;
   }
 
@@ -85,12 +90,12 @@ export class ProjectComponent implements OnInit {
   async getProjects() {
     this.projectService.getProjects().subscribe(res => {
       this.projects = res;
+      console.log(this.projects);
     });
   }
 
   async addProject(projectName: string) {
-    console.log(projectName);
-    
+    // Données à envoyer au serveur
     const newProject: ProjectForm = { 
       name: this.projectName
      };
@@ -98,7 +103,7 @@ export class ProjectComponent implements OnInit {
     try {
       await this.projectService.addProject(newProject);
       await this.getProjects();
-
+      
       // Je masque le formulaire d'ajout
       this.addForm = false;
       // Je vide le champ du formulaire
@@ -109,19 +114,33 @@ export class ProjectComponent implements OnInit {
   }
 
   async editProject(projectId: number) {
-    console.log("Modification du projet avec l'id " + projectId);
-
-    const projectToUpdate: ProjectForm = {
-      name: this.projectName,
+    // Données à envoyer au serveur
+    const updatedProjectName: ProjectForm = {
+      name: this.updatedProjectName,
     };
 
-    this.projectService.updateProject(projectId, projectToUpdate);
-    
+    try {
+      this.projectService.updateProject(projectId, updatedProjectName);
+      
+
+      // Mettre à jour le nom du projet dans la liste
+      // Je cherche l'index du projet dans la liste, et celui dont l'id matche avec l'id du projet modifié, je modifie le nom côté navigateur
+      const index = this.projects.findIndex(project => project.id === projectId);
+      if (index !== -1) {
+        this.projects[index].name = this.updatedProjectName;
+      }
+
+      // Réinitialiser le nom du projet et de l'id sélectionné après la modification
+      this.selectedProjectId = 1;
+      this.updatedProjectName = "";
+      // Masquage du formulaire de modification après la modification
+      this.updateForm = false;
+    } catch (error) {
+        console.error("Une erreur est survenue lors de la modification");
+    }
   }
 
   async deleteProject(projectId: number) {
-    console.log("Suppression du projet à l'id " + projectId);
-
     try {
       await this.projectService.deleteProject(projectId);
 
