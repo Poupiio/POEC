@@ -8,7 +8,7 @@
    </div>
    <div class="offcanvas-body">
       <div *ngFor="let project of projects" class="d-flex justify-content-between align-items-center">
-         <h5 (click)="closeOffcanvas(); getProjectId(project.id); updatePageTitle(project.name); updateTasksDisplay()">{{ project.name }}</h5>
+         <h5 (click)="closeOffcanvas(); getProjectById(project.id); updatePageTitle(project.name); updateTasksDisplay()">{{ project.name }}</h5>
          <div>
 
             <!-- Bouton de modification -->

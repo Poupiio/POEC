@@ -34,7 +34,6 @@ export class TaskComponent implements OnInit {
   getProjectTasks(projectId: number) {
     this.taskService.getAllTasks(projectId).subscribe(res => {
       this.tasks = res;
-      console.log(this.tasks);
     });
   }
 
@@ -46,12 +45,6 @@ export class TaskComponent implements OnInit {
       estimationHours: this.estimation,
       projectId: this.projectId
     }
-
-    console.log(newTask.projectId);
-    
-
-    console.log("Données à ajouter : " + newTask.title, newTask.description, newTask.status, newTask.estimationHours, newTask.projectId);
-    console.log(newTask);
     
     try {
       await this.taskService.addTask(this.projectId, newTask);
@@ -71,7 +64,6 @@ export class TaskComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       // Utilisation de l'opérateur unaire = +params pour convertir la string récupérée dans les params en nombre
       this.projectId = +params['projectId'];
-      console.log("ID du projet : " + this.projectId);
     });
   }
 

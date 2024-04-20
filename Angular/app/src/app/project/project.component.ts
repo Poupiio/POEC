@@ -18,6 +18,7 @@ export class ProjectComponent implements OnInit {
   selectedProjectTitle: string = "";
   
   projectName: string = "";
+  currentProjectName?: string;
   updatedProjectName: string = "";
   offcanvasVisible: boolean = false;
   projects: Project[] = [];
@@ -69,6 +70,7 @@ export class ProjectComponent implements OnInit {
   // Passage du nom du projet au titre de la page
   updatePageTitle(projectName: string): void {
     this.pageTitle = projectName;
+    console.log("fonction updatePageTitle titre : " + projectName);
   }
 
   // Affichage du formulaire d'ajout de projet
@@ -86,18 +88,23 @@ export class ProjectComponent implements OnInit {
     this.addForm = false;
   }
   
-  // Obtenir l'id du projet cliqué
-  getProjectId(projectId: number) {
+  // Obtenir l'id du projet cliqué : je me sers de cette fonction pour récupérer le nom du projet pour l'afficher par la suite
+  async getProjectById(projectId: number) {
     this.projectId = projectId;
-    console.log("projet cliqué " + projectId);
+    console.log("project id " + projectId);
     
+    try {
+      const project = await this.projectService.getProjectById(projectId).toPromise();
+      this.currentProjectName = project?.name;
+    } catch (error) {
+      console.error('Erreur lors de la récupération du projet :', error);
+    }
   }
 
   // Afficher tous les projets
   async getProjects() {
     this.projectService.getProjects().subscribe(res => {
       this.projects = res;
-      console.log(this.projects);
     });
   }
 
@@ -164,8 +171,6 @@ export class ProjectComponent implements OnInit {
 
   // Passage de l'id du projet en paramètre URL pour le récupérer sur la page du formulaire d'ajout de tâche
   onTaskAdding(projectId: number) {
-    console.log(projectId);
-    
     this.router.navigate(['/task/add'], { queryParams: { projectId: projectId } });
   }
 
@@ -207,9 +212,7 @@ export class ProjectComponent implements OnInit {
     this.done = this.tasks
       .filter(task => task.status === TaskStatus.DONE)
       .map(task => ({ title: task.title, id: task.id }));
-
-    console.log("Tâches récupérées dans displayTasks() ", this.todo, this.ongoing, this.done);
-      
+  
   }
 
   updateTasksDisplay() {
@@ -237,17 +240,30 @@ export class ProjectComponent implements OnInit {
     // Récupérer l'ID du projet depuis les paramètres de l'URL
     this.route.queryParams.subscribe(params => {
       this.projectId = params['projectId'];
-
-      console.log("id du projet quand j'arrive sur la page : " + this.projectId);
-    
     });
 
     // Si projectId est défini, donc qu'un projet a été sélectionné, je displayTasks()
     if (this.projectId) {
-      this.taskService.getAllTasks(this.projectId).subscribe(res => {
-        this.tasks = res;
-        this.displayTasks();
-      });
+      // 1 : Je récupère le projet grâce à son id
+      this.projectService.getProjectById(this.projectId).subscribe(
+        project => {
+          if (project) {
+            // Je mets à jour le titre de la page avec le nom du projet
+            this.pageTitle = project.name;
+
+            // Afficher les tâches une fois que le projet est récupéré
+            this.taskService.getAllTasks(this.projectId).subscribe(res => {
+              this.tasks = res;
+              this.displayTasks();
+            });
+          } else {
+            console.log("Projet non trouvé.");
+          }
+        },
+        error => {
+          console.error('Erreur lors de la récupération du projet :', error);
+        }
+      );
     }
   }
 }

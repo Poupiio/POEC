@@ -24,6 +24,10 @@ export class ProjectService {
     .pipe();
   }
 
+  getProjectById(id: number): Observable<Project> {
+    return this.http.get<Project>(`/project/${id}`).pipe(tap(proj => console.log(proj))
+    );
+  }
 
   // Ajouter un projet
   async addProject(project: ProjectForm) {
