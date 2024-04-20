@@ -28,7 +28,7 @@ export class ProjectService {
   // Ajouter un projet
   async addProject(project: ProjectForm) {
     const newProject = await this.http.post<Project>("/project", project).toPromise();
-    if (!newProject) throw new Error("Project not created");
+    if (!newProject) throw new Error("Projet non créé.");
 
     // Mise à jour de la liste des projets depuis le serveur
     this.getProjects().subscribe(projects => {
@@ -46,15 +46,12 @@ export class ProjectService {
       // Mise à jour de la liste des projets depuis le serveur
       this.getProjects().subscribe(projects => {
         this.projects = projects;
-        console.log(projects);
       });
 
     } catch(error) {
       console.error("Une erreur s'est produite lors de la modification du projet avec l'id " + id);
     }
   }
-
-
 
   // Suppression d'un projet
   async deleteProject(id: number) {

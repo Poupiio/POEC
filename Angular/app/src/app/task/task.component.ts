@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskStatus, Task, TaskForm } from "../../types";
-import { Router } from '@angular/router';
-import { TaskDataService } from '../services/task-data.service';
+import { ActivatedRoute, Router } from '@angular/router';
+// import { TaskDataService } from '../services/task-data.service';
+import { TaskService } from '../services/task.service';
+import { ProjectService } from '../services/project.service';
 
 @Component({
   selector: 'app-task',
@@ -18,11 +20,13 @@ export class TaskComponent implements OnInit {
   
   constructor(
     private router: Router,
-    private taskDataService: TaskDataService
+    private taskService: TaskService,
+    private projectService: ProjectService,
+    private route: ActivatedRoute
   ) { }
 
   submit() : void {
-    const task: TaskForm = {
+    const newTask: TaskForm = {
       title: this.title,
       description: this.description,
       status: this.status,
@@ -30,11 +34,18 @@ export class TaskComponent implements OnInit {
       projectId: this.projectId
     }
 
-    this.taskDataService.addTask(task);
+    this.taskService.addTask(this.projectId, newTask);
   
-    this.router.navigate(['/dragdrop']);
+    this.router.navigate(['/project']);
+    this.taskService.getAllTasks(this.projectId);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Récupération de l'id du projet depuis l'URL
+    this.route.queryParams.subscribe(params => {
+      this.projectId = params['projectId'];
+      console.log('ID du projet:', this.projectId);
+    });
+  }
 
 }

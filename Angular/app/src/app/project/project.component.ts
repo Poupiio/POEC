@@ -12,6 +12,7 @@ import { TaskDataService } from '../services/task-data.service';
   ]
 })
 export class ProjectComponent implements OnInit {
+  pageTitle: string = "";
   projectName: string = "";
   updatedProjectName: string = "";
   offcanvasVisible: boolean = false;
@@ -35,7 +36,6 @@ export class ProjectComponent implements OnInit {
   projectId: number = 1;
   
 
-  
   constructor(
     private projectService: ProjectService,
     private userService: UserService,
@@ -66,6 +66,11 @@ export class ProjectComponent implements OnInit {
     }
   }
 
+  // Passage du nom du projet au titre de la page
+  updatePageTitle(projectName: string): void {
+    this.pageTitle = projectName;
+  }
+
   // Affichage du formulaire d'ajout de projet
   toggleAddForm(): void {
     this.addForm = !this.addForm;
@@ -94,6 +99,7 @@ export class ProjectComponent implements OnInit {
     });
   }
 
+  // Ajouter un projet
   async addProject(projectName: string) {
     // Données à envoyer au serveur
     const newProject: ProjectForm = { 
@@ -113,6 +119,7 @@ export class ProjectComponent implements OnInit {
     }
   }
 
+  // Modifier un projet
   async editProject(projectId: number) {
     // Données à envoyer au serveur
     const updatedProjectName: ProjectForm = {
@@ -140,6 +147,7 @@ export class ProjectComponent implements OnInit {
     }
   }
 
+  // Supprimer un projet
   async deleteProject(projectId: number) {
     try {
       await this.projectService.deleteProject(projectId);
@@ -150,6 +158,13 @@ export class ProjectComponent implements OnInit {
     } catch (error) {
       console.error("Une erreur s'est produite lors de la suppression du projet :", error);
     }
+  }
+
+  // Passage de l'id du projet en paramètre URL pour le récupérer sur la page du formulaire d'ajout de tâche
+  onTaskAdding(projectId: number) {
+    console.log(projectId);
+    
+    this.router.navigate(['/task/add'], { queryParams: { projectId: projectId } });
   }
 
 
