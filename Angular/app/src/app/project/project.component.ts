@@ -12,6 +12,8 @@ import { TaskDataService } from '../services/task-data.service';
   ]
 })
 export class ProjectComponent implements OnInit {
+  isPageLoaded: boolean = false;
+
   pageTitle: string = "";
   selectedProjectTitle: string = "";
   
@@ -87,6 +89,8 @@ export class ProjectComponent implements OnInit {
   // Obtenir l'id du projet cliqué
   getProjectId(projectId: number) {
     this.projectId = projectId;
+    console.log("projet cliqué " + projectId);
+    
   }
 
   // Afficher tous les projets
@@ -171,18 +175,22 @@ export class ProjectComponent implements OnInit {
    // PARTIE TASKS (PENSER A DECOUPER EN 2 COMPOSANTS POUR LES TACHES)
 
   // Afficher les tâches d'un projet en fonction de son ID
-  getProjectTasks(projectId: number): void {
-    projectId = this.projectId;
-     // Je récupère les tâches depuis la BDD
-     this.taskService.getAllTasks(projectId).subscribe(res => {
-      this.tasks = res;
-      // Puis je les dispatche dans les colonnes correspondant au statut de la tâche
-      this.displayTasks();
-    });
+  // getProjectTasks(projectId: number): void {
+  //   // projectId = this.projectId;
+  //   console.log("id avant requête " + projectId);
     
-  }
+    // Je récupère les tâches depuis la BDD
+    // this.taskService.getAllTasks(projectId).subscribe(res => {
+    //   this.tasks = res;
+    //   // Puis je les dispatche dans les colonnes correspondant au statut de la tâche
+    //   this.displayTasks();
+    // });
+    
+  // }
 
   displayTasks(): void {
+    this.taskService.getAllTasks(this.projectId);
+
     // Pour chaque colonne, je vais filtrer le tableau de tâches (tasks) par leur statut
 
     // COLONNE A FAIRE
@@ -234,7 +242,12 @@ export class ProjectComponent implements OnInit {
     
     });
 
-    // J'affiche les tâche à chaque appel du composant
-    this.getProjectTasks(this.projectId);
+    // Si projectId est défini, donc qu'un projet a été sélectionné, je displayTasks()
+    if (this.projectId) {
+      this.taskService.getAllTasks(this.projectId).subscribe(res => {
+        this.tasks = res;
+        this.displayTasks();
+      });
+    }
   }
 }
