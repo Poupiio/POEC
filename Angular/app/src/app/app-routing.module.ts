@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: "task/add", component: TaskComponent },
 
   // { path: "task/update/:id", component: UpdateTaskComponent, canActivate: [AuthGuard] },
-  { path: "task/update/:id", component: UpdateTaskComponent },
+  { path: "task/update/:projectId/:taskId", component: UpdateTaskComponent },
   
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },

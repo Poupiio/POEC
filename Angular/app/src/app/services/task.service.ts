@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { TaskForm } from 'src/types';
+import { Observable, tap } from 'rxjs';
+import { TaskForm, Task } from 'src/types';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class TaskService {
 
   // Afficher les tâches du projet
   getAllTasks(projectId: number) : Observable<Task[]> {
-      return this.http.get<Task[]>(`/project/${projectId}/task`).pipe();
+      return this.http.get<Task[]>(`/project/${projectId}/task`);
   }
 
   // Ajouter une tâche
@@ -31,25 +31,27 @@ export class TaskService {
   }
 
   // Modification d'une tâche
-  // async updateTask(projectId: number, taskId: number, task: TaskForm) {
-  //   try {
-  //     const updatedTask = await this.http.put<Task>(`/project/${projectId}/task/${taskId}`).toPromise();
+  async updateTask(projectId: number, taskId: number, task: TaskForm) {
+    try {
+      const updatedTask = await this.http.put<Task>(`/project/${projectId}/task/${taskId}`, task).toPromise();
 
-  //     if (!updatedTask) throw new Error("Aucun projet à modifier");
+      if (!updatedTask) throw new Error("Aucun projet à modifier");
   
-  //     // Mise à jour de la liste des projets depuis le serveur
-  //     this.getAllTasks(projectId).subscribe(tasks => {
-  //       this.tasks = tasks;
-  //       console.log(tasks);
-  //     });
+      // Mise à jour de la liste des projets depuis le serveur
+      this.getAllTasks(projectId).subscribe(tasks => {
+        this.tasks = tasks;
+        console.log(tasks);
+      });
 
-  //   } catch(error) {
-  //     console.error("Une erreur s'est produite lors de la modification de la tâche avec l'id " + taskId);
-  //   }
-  // }
+    } catch(error) {
+      console.error("Une erreur s'est produite lors de la modification de la tâche avec l'id " + taskId);
+    }
+  }
 
   // Suppression d'une tâche
   async deleteTask(projectId: number, taskId: number) {
+    console.log("côté serveur : " + projectId, taskId);
+    
     try {
       await this.http.delete(`/project/${projectId}/task/${taskId}`).toPromise();
     } catch (error) {

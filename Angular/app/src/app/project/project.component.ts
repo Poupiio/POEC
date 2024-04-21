@@ -3,7 +3,8 @@ import { ProjectService } from '../services/project.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project, TaskStatus, TaskToDisplay, Task, TaskForm, ProjectForm } from 'src/types';
 import { UserService } from '../services/user.service';
-import { TaskDataService } from '../services/task-data.service';
+// import { TaskDataService } from '../services/task-data.service';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-project',
@@ -39,7 +40,7 @@ export class ProjectComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private userService: UserService,
-    private taskService: TaskDataService,
+    private taskService: TaskService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -165,7 +166,7 @@ export class ProjectComponent implements OnInit {
       this.projects = this.projects.filter(projects => projects.id !== projectId);
       this.getProjects();
     } catch (error) {
-      console.error("Une erreur s'est produite lors de la suppression du projet :", error);
+      console.error("Une erreur s'est produite lors de la suppression du projet", error);
     }
   }
 
@@ -180,18 +181,16 @@ export class ProjectComponent implements OnInit {
    // PARTIE TASKS (PENSER A DECOUPER EN 2 COMPOSANTS POUR LES TACHES)
 
   // Afficher les tâches d'un projet en fonction de son ID
-  // getProjectTasks(projectId: number): void {
-  //   // projectId = this.projectId;
-  //   console.log("id avant requête " + projectId);
+  getProjectTasks(projectId: number): void {
+    // projectId = this.projectId;
+    console.log("id avant requête " + projectId);
     
     // Je récupère les tâches depuis la BDD
-    // this.taskService.getAllTasks(projectId).subscribe(res => {
-    //   this.tasks = res;
-    //   // Puis je les dispatche dans les colonnes correspondant au statut de la tâche
-    //   this.displayTasks();
-    // });
+    this.taskService.getAllTasks(projectId).subscribe(res => {
+      this.tasks = res;
+    });
     
-  // }
+  }
 
   displayTasks(): void {
     this.taskService.getAllTasks(this.projectId);
@@ -218,6 +217,8 @@ export class ProjectComponent implements OnInit {
   updateTasksDisplay() {
     this.taskService.getAllTasks(this.projectId).subscribe(res => {
       this.tasks = res;
+      console.log(res);
+      
       // Puis je les dispatche dans les colonnes correspondant au statut de la tâche
       this.displayTasks();
     });
@@ -228,8 +229,27 @@ export class ProjectComponent implements OnInit {
     
   }
 
-  deleteTask(id: number) {
-    console.log("Suppression d'une tâche");
+  // Redirection vers le formulaire de modification de tâche
+  redirectUpdateForm(projectId: number, taskId: number) {
+    this.router.navigate([`/task/update/${projectId}/${taskId}`]);
+  }
+
+  // Supprimer une tâche en fonction du projet sélectionné
+  async deleteTask(projectId: number, taskId: number) {
+    console.log("id de la tâche à supprimer " + taskId);
+    console.log("id du projet " + projectId);
+    
+
+    try {
+      await this.taskService.deleteTask(projectId, taskId);
+
+      
+      // Mise à jour de la liste sans avoir à refresh la page
+      this.tasks = this.tasks.filter(task => task.id !== taskId);
+      this.displayTasks();
+    } catch (error) {
+      console.error("Une erreur s'est produite lors de la suppression de la tâche", error);
+    }
     
   }
 
@@ -237,22 +257,24 @@ export class ProjectComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // Récupérer l'ID du projet depuis les paramètres de l'URL
+    // Je récupère l'id du projet depuis les paramètres de l'URL
     this.route.queryParams.subscribe(params => {
       this.projectId = params['projectId'];
     });
 
     // Si projectId est défini, donc qu'un projet a été sélectionné, je displayTasks()
     if (this.projectId) {
-      // 1 : Je récupère le projet grâce à son id
-      this.projectService.getProjectById(this.projectId).subscribe(
-        project => {
+      // 1 : Je récupère les détails du projet (son id + son nom)
+      this.projectService.getProjectById(this.projectId)
+        .subscribe(project => {
           if (project) {
             // Je mets à jour le titre de la page avec le nom du projet
             this.pageTitle = project.name;
 
-            // Afficher les tâches une fois que le projet est récupéré
+            // J'affiche les tâches quand le projet est récupéré
             this.taskService.getAllTasks(this.projectId).subscribe(res => {
+              console.log(res);
+              
               this.tasks = res;
               this.displayTasks();
             });

@@ -59,6 +59,7 @@ export type TaskToUpdate = {
    description?: string;
    status: TaskStatus;
    estimationHours: number;
+   projectId: number;
 }
 
 export type Task = {

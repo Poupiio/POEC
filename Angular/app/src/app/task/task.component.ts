@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { TaskStatus, TaskForm, TaskToDisplay } from "../../types";
+import { TaskStatus, TaskForm, TaskToDisplay, Task } from "../../types";
 import { ActivatedRoute, Router } from '@angular/router';
 // import { TaskDataService } from '../services/task-data.service';
 import { TaskService } from '../services/task.service';
