@@ -26,22 +26,20 @@ export class UpdateTaskComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit(): void {
-  }
-
+  
   getProjectTasks(projectId: number) {
     this.taskService.getAllTasks(projectId).subscribe(res => {
       this.tasks = res;
     });
   }
-
+  
   async submit(): Promise<void> {
-
+    
     // Récupération de l'id de la tâche via les paramètres url
     this.route.params.subscribe(params => {
       const taskId = params['taskId'];
       const projectId = params['projectId'];
-
+      
       console.log("id de la tâche " + taskId + " et id du projet " + projectId);
       
       // Création d'un objet de type TaskToUpdate pour envoyer les données au serveur
@@ -52,18 +50,36 @@ export class UpdateTaskComponent implements OnInit {
         estimationHours: this.estimation,
         projectId: projectId
       };
-
-      this.taskService.updateTask(projectId, taskId, updatedTask);
-
-      // Redirection vers la page du tableau Kanban
-      // this.router.navigate(["/project"]);
-
-       // Mise à jour des tâches après avoir ajouté une nouvelle tâche
-       this.getProjectTasks(projectId);
       
-       // Redirection vers la page du projet avec l'ID du projet
-       this.router.navigate(['/project'], { queryParams: { projectId: projectId } });
+      this.taskService.updateTask(projectId, taskId, updatedTask);
+      
+      // Mise à jour des tâches après avoir ajouté une nouvelle tâche
+      this.getProjectTasks(projectId);
+      
+      // Redirection vers la page du tableau Kanban correspondant au projet
+      this.router.navigate(['/project'], { queryParams: { projectId: projectId } });
     });
     
   }
+
+
+  ngOnInit(): void {
+    // Je récupère les détails de la tâche cliquée afin d'attribuer ses valeurs aux champs correspondants dans le formulaire
+    this.route.params.subscribe(params => {
+      const taskId = params['taskId'];
+      const projectId = params['projectId'];
+      
+       this.taskService.getTaskById(projectId, taskId).subscribe(task => {
+        if (task) {
+          this.title = task.title;
+          this.description = task.description || "";
+          this.status = task.status;
+          this.estimation = task.estimationHours;
+        } else {
+          console.log("Tâche non trouvée.");
+        }
+      });
+    });
+  }
+
 }

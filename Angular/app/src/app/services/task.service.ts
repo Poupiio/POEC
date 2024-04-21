@@ -18,6 +18,11 @@ export class TaskService {
       return this.http.get<Task[]>(`/project/${projectId}/task`);
   }
 
+  // Récupérer les détails d'une tâche
+  getTaskById(projectId: number, taskId: number): Observable<Task> {
+    return this.http.get<Task>(`/project/${projectId}/task/${taskId}`);
+  }
+
   // Ajouter une tâche
   async addTask(projectId: number, task: TaskForm) {
     const newTask = await this.http.post<Task>(`/project/${projectId}/task/create`, task).toPromise();
