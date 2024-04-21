@@ -12,7 +12,7 @@
          <div>
 
             <!-- Bouton de modification -->
-            <div type="button" class="btn btn-success" (click)="toggleUpdateForm(project.id)">
+            <div type="button" class="btn btn-success" (click)="toggleUpdateForm(project.id, project.name)">
                <i class="bi bi-pencil-fill"></i>
             </div>
 
@@ -31,7 +31,7 @@
 
     <!-- Affichage du formulaire d'ajout de projet -->
     <ng-container *ngIf="addForm">
-      <form class="form mx-auto" #projectAddForm="ngForm">
+      <form class="form mx-auto" #projectAddForm="ngForm" (ngSubmit)="addProject(projectName)">
          
          <div class="input-group mb-3">
             <span class="input-group-text" id="projectName">Nom</span>
@@ -45,13 +45,13 @@
             name="projectName"
             />
          </div>
-         <button type="button" class="btn btn-primary" (click)="addProject(projectName)">Ajouter</button>
+         <button type="button" class="btn btn-primary">Ajouter</button>
       </form>
    </ng-container>
 
    <!-- Affichage du formulaire de modification de projet -->
    <ng-container *ngIf="updateForm">
-      <form class="form mx-auto" #projectEditForm="ngForm">
+      <form class="form mx-auto" #projectEditForm="ngForm" (ngSubmit)="editProject(selectedProjectId)">
          
          <div class="input-group mb-3">
             <span class="input-group-text" id="updatedProjectName">Nom</span>
@@ -65,7 +65,7 @@
             name="updatedProjectName"
             />
          </div>
-         <button type="button" class="btn btn-primary" (click)="editProject(selectedProjectId)">Modifier</button>
+         <button type="button" class="btn btn-primary">Modifier</button>
       </form>
    </ng-container>
 </div>

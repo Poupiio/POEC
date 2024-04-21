@@ -82,8 +82,9 @@ export class ProjectComponent implements OnInit {
   }
 
   // Affichage du formulaire de modification de projet
-  toggleUpdateForm(projectId: number): void {
+  toggleUpdateForm(projectId: number, projectName: string): void {
     this.selectedProjectId = projectId;
+    this.updatedProjectName = projectName;
     this.updateForm = !this.updateForm;
     // Je masque le formulaire d'ajout
     this.addForm = false;

@@ -4,6 +4,7 @@
    <form
       class="form mx-auto col-sm-12 col-md-10 col-lg-10 col-xl-8 col-xxl-6"
       #updateTask="ngForm"
+      (ngSubmit)="submit()"
    >
 
    <!-- Title -->
@@ -12,8 +13,6 @@
       <input
         type="text"
         class="form-control"
-        placeholder="Mon titre modifié"
-        aria-label="Mon titre modifié"
         aria-describedby="taskTitle"
         [(ngModel)]="title"
         name="title"
@@ -28,7 +27,6 @@
       >
       <textarea
         class="form-control"
-        placeholder="Description modifiée"
         aria-label="With textarea"
         name="description"
         [(ngModel)]="description"
@@ -60,8 +58,6 @@
       <input
         type="number"
         class="form-control"
-        placeholder="1"
-        aria-label="Temps estimé"
         aria-describedby="estimatedHours"
         name="estimation"
         [(ngModel)]="estimation"
@@ -72,7 +68,6 @@
       <button
         type="submit"
         class="btn btn-primary btn-lg updateTask"
-        (click)="submit()"
       >
          &#9998;
       </button>
