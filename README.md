@@ -11,7 +11,7 @@
 ## Algorithmie
 - #### Exercices [:pencil2:](./Algo/index.js)
 - #### TP Le Juste Prix [:sparkler:](./Algo/Juste_prix)
-- #### TP Banqued [:sparkler:](./Algo/TP%20Banque)
+- #### TP Banque [:sparkler:](./Algo/TP%20Banque)
 
 ## SQL
 - #### Exercices [:pencil2:](./SQL)
