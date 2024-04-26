@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -13,23 +13,19 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
   styles: [`
     .overlay {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background-color: rgba(0,0,0,0.5);
       color: #060905;
-
-      width: 450px;
-      height: 450px;
-      border: solid 2px red;
     }
     .overlay .modal {
-      border: solid 2px blue;
       margin: 15% auto;
       background-color: #fefefe;
-      color: white;
-      height: 100%;
-      width: 100%;
+      min-width: 300px;
+      max-width: 80%;
+      min-height: 200px;
       position: relative;
       padding: 10px 20px;
     }
@@ -69,5 +65,4 @@ export class ModalComponent implements OnInit {
   onClickModal(e: MouseEvent) {
     e.stopPropagation();
   }
-
 }
